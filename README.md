@@ -1,2 +1,0 @@
-# ezcode-shop
-ezcode-shop

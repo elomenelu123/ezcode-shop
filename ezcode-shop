@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzCode - Sklep</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Kulki */
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: rise 10s infinite ease-in;
+        }
+
+        .bubble:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100px);
+            }
+            100% {
+                bottom: 1080px;
+                transform: translateX(-200px);
+            }
+        }
+
+        /* Nagłówek */
+        header {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid #00ff00;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff00, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Panel logowania */
+        .login-panel {
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
+            border: 1px solid #00ff00;
+            text-align: center;
+        }
+
+        .login-panel input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #222;
+            border: 1px solid #00ff00;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .login-panel button {
+            background: linear-gradient(45deg, #00ff00, #008800);
+            color: black;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Produkty */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #00ff00;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.3);
+            border-color: #00ffff;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #333, #666);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #00ff00;
+        }
+
+        .product-desc {
+            color: #ccc;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .interested-btn {
+            background: linear-gradient(45deg, #00ff00, #008800);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .interested-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        /* Formularz dodawania */
+        .add-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            border: 1px solid #00ff00;
+        }
+
+        .add-form input,
+        .add-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #222;
+            border: 1px solid #00ff00;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .add-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .add-form button {
+            background: linear-gradient(45deg, #00ff00, #008800);
+            color: black;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Zakupy */
+        .purchases {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            border: 1px solid #00ff00;
+        }
+
+        .purchases table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .purchases th,
+        .purchases td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        .purchases th {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+        }
+
+        /* Przyciski nawigacji */
+        .nav-buttons {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(45deg, #00ff00, #008800);
+            color: black;
+            transform: scale(1.1);
+        }
+
+        /* Komunikat */
+        .message {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            border: 1px solid #00ff00;
+            text-align: center;
+        }
+
+        .success {
+            color: #00ff00;
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Kulki -->
+    <div class="bubbles" id="bubbles"></div>
+
+    <header>
+        <div class="logo">EZCODE</div>
+        <h2>SKLEP Z UNIKALNYMI PRODUKTAMI</h2>
+    </header>
+
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="showSection('shop')">Sklep</button>
+        <button class="nav-btn" onclick="showSection('admin')">Admin Panel</button>
+    </div>
+
+    <!-- Sekcja Sklepu -->
+    <div id="shop-section">
+        <div class="products" id="products-container">
+            <!-- Produkty będą dodawane tutaj przez JavaScript -->
+        </div>
+    </div>
+
+    <!-- Sekcja Admina -->
+    <div id="admin-section" style="display: none;">
+        <div class="login-panel" id="login-panel">
+            <h3>PANEL ADMINISTRATORA</h3>
+            <input type="password" id="admin-password" placeholder="Wprowadź hasło">
+            <button onclick="loginAdmin()">Zaloguj</button>
+        </div>
+
+        <div id="admin-content" style="display: none;">
+            <div class="add-form">
+                <h3>DODAJ NOWY PRZEDMIOT</h3>
+                <input type="text" id="item-name" placeholder="Nazwa przedmiotu">
+                <textarea id="item-desc" placeholder="Opis przedmiotu"></textarea>
+                <input type="text" id="item-image" placeholder="URL obrazu (opcjonalnie)">
+                <button onclick="addItem()">Dodaj przedmiot</button>
+                <button onclick="logoutAdmin()">Wyloguj</button>
+            </div>
+
+            <div class="purchases">
+                <h3>ZAKUPY UŻYTKOWNIKÓW</h3>
+                <table id="purchases-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Discord</th>
+                            <th>Przedmiot</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchases-body">
+                        <!-- Zakupy będą dodawane tutaj -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Komunikat sukcesu -->
+    <div id="success-message" class="message" style="display: none;">
+        <h2>Siemka, aby zakupić dodaj mnie na Discord!</h2>
+        <p>Twój nick: <strong id="user-discord"></strong></p>
+        <p>Wybrany przedmiot: <strong id="selected-item"></strong></p>
+        <div class="success">✅ OKEJ!</div>
+        <button class="nav-btn" onclick="showSection('shop')">Powrót do sklepu</button>
+    </div>
+
+    <script>
+        // Dane w localStorage (symulacja bazy danych)
+        let items = JSON.parse(localStorage.getItem('ezcode_items')) || [];
+        let purchases = JSON.parse(localStorage.getItem('ezcode_purchases')) || [];
+        let isAdmin = false;
+
+        // Generowanie kulek
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            const bubbleCount = 30;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                bubble.style.animationDelay = Math.random() * 5 + 's';
+                bubble.style.width = (Math.random() * 40 + 20) + 'px';
+                bubble.style.height = bubble.style.width;
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
+        // Wyświetlanie produktów
+        function displayProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            
+            items.forEach((item, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">` : '📦'}</div>
+                    <div class="product-name">${item.name}</div>
+                    <div class="product-desc">${item.description}</div>
+                    <button class="interested-btn" onclick="showInterested(${index})">ZAINTERESOWANY</button>
+                `;
+                container.appendChild(productCard);
+            });
+        }
+
+        // Pokaż sekcję
+        function showSection(section) {
+            document.getElementById('shop-section').style.display = section === 'shop' ? 'block' : 'none';
+            document.getElementById('admin-section').style.display = section === 'admin' ? 'block' : 'none';
+            document.getElementById('success-message').style.display = 'none';
+            
+            if (section === 'shop') {
+                displayProducts();
+            } else if (section === 'admin') {
+                if (isAdmin) {
+                    document.getElementById('login-panel').style.display = 'none';
+                    document.getElementById('admin-content').style.display = 'block';
+                    displayPurchases();
+                } else {
+                    document.getElementById('login-panel').style.display = 'block';
+                    document.getElementById('admin-content').style.display = 'none';
+                }
+            }
+        }
+
+        // Logowanie admina
+        function loginAdmin() {
+            const password = document.getElementById('admin-password').value;
+            if (password === 'ezcodeadmp') {
+                isAdmin = true;
+                showSection('admin');
+            } else {
+                alert('Nieprawidłowe hasło!');
+            }
+        }
+
+        // Wylogowanie admina
+        function logoutAdmin() {
+            isAdmin = false;
+            document.getElementById('admin-password').value = '';
+            showSection('admin');
+        }
+
+        // Dodaj przedmiot
+        function addItem() {
+            const name = document.getElementById('item-name').value;
+            const desc = document.getElementById('item-desc').value;
+            const image = document.getElementById('item-image').value;
+            
+            if (name && desc) {
+                items.push({
+                    id: Date.now(),
+                    name: name,
+                    description: desc,
+                    image: image
+                });
+                localStorage.setItem('ezcode_items', JSON.stringify(items));
+                document.getElementById('item-name').value = '';
+                document.getElementById('item-desc').value = '';
+                document.getElementById('item-image').value = '';
+                displayProducts();
+                alert('Przedmiot dodany!');
+            } else {
+                alert('Wypełnij wszystkie pola!');
+            }
+        }
+
+        // Wyświetl zakupy
+        function displayPurchases() {
+            const tbody = document.getElementById('purchases-body');
+            tbody.innerHTML = '';
+            
+            purchases.forEach(purchase => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${purchase.id}</td>
+                    <td>${purchase.discord}</td>
+                    <td>${purchase.item}</td>
+                    <td>${purchase.date}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Pokaż zainteresowany
+        function showInterested(itemIndex) {
+            const discord = prompt('Wpisz swój nick z Discorda:');
+            if (discord) {
+                const item = items[itemIndex];
+                const purchase = {
+                    id: Date.now(),
+                    discord: discord,
+                    item: item.name,
+                    date: new Date().toLocaleString('pl-PL')
+                };
+                
+                purchases.push(purchase);
+                localStorage.setItem('ezcode_purchases', JSON.stringify(purchases));
+                
+                document.getElementById('user-discord').textContent = discord;
+                document.getElementById('selected-item').textContent = item.name;
+                document.getElementById('success-message').style.display = 'block';
+                document.getElementById('shop-section').style.display = 'none';
+            }
+        }
+
+        // Inicjalizacja
+        window.onload = function() {
+            createBubbles();
+            displayProducts();
+        };
+    </script>
+</body>
+</html>
