@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background: linear-gradient(135deg, #0a0a2a, #000033);
             color: #fff;
@@ -19,7 +18,6 @@
             min-height: 100vh;
             background-attachment: fixed;
         }
-
         /* Kulki */
         .bubbles {
             position: fixed;
@@ -30,7 +28,6 @@
             z-index: -1;
             pointer-events: none;
         }
-
         .bubble {
             position: absolute;
             bottom: -100px;
@@ -42,14 +39,12 @@
             animation: rise 10s infinite ease-in;
             border: 1px solid rgba(0, 195, 255, 0.3);
         }
-
         .bubble:hover {
             background: rgba(0, 195, 255, 0.8);
             transform: scale(1.2);
             transition: all 0.3s ease;
             box-shadow: 0 0 20px rgba(0, 195, 255, 0.6);
         }
-
         .bubble:before {
             content: '';
             position: absolute;
@@ -60,7 +55,6 @@
             top: 10px;
             left: 10px;
         }
-
         @keyframes rise {
             0% {
                 bottom: -100px;
@@ -80,7 +74,6 @@
                 transform: translateX(-100px) translateY(-800px) rotate(360deg);
             }
         }
-
         /* Nagłówek */
         header {
             text-align: center;
@@ -90,7 +83,6 @@
             box-shadow: 0 5px 20px rgba(0, 195, 255, 0.3);
             backdrop-filter: blur(10px);
         }
-
         .logo {
             font-size: 3.5rem;
             font-weight: bold;
@@ -100,13 +92,11 @@
             margin-bottom: 1rem;
             text-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
         }
-
         .subtitle {
             color: #00c3ff;
             font-size: 1.2rem;
             letter-spacing: 2px;
         }
-
         /* Panel logowania */
         .login-panel {
             max-width: 450px;
@@ -119,13 +109,11 @@
             box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
             backdrop-filter: blur(10px);
         }
-
         .login-panel h3 {
             color: #00c3ff;
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
         }
-
         .login-panel input {
             width: 100%;
             padding: 15px;
@@ -137,13 +125,11 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-
         .login-panel input:focus {
             border-color: #00c3ff;
             box-shadow: 0 0 15px rgba(0, 195, 255, 0.4);
             outline: none;
         }
-
         .login-panel button {
             background: linear-gradient(45deg, #0066ff, #00c3ff);
             color: white;
@@ -157,12 +143,10 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
         }
-
         .login-panel button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 195, 255, 0.5);
         }
-
         /* Produkty */
         .products {
             display: grid;
@@ -172,7 +156,6 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-
         .product-card {
             background: rgba(15, 35, 70, 0.9);
             border-radius: 15px;
@@ -184,13 +167,11 @@
             backdrop-filter: blur(5px);
             position: relative;
         }
-
         .product-card:hover {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0, 195, 255, 0.4);
             border-color: #00c3ff;
         }
-
         .product-image {
             width: 100%;
             height: 220px;
@@ -204,26 +185,22 @@
             border: 2px solid #0066ff;
             transition: all 0.3s ease;
         }
-
         .product-card:hover .product-image {
             border-color: #00c3ff;
             box-shadow: 0 0 20px rgba(0, 195, 255, 0.3);
         }
-
         .product-name {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: #00c3ff;
             font-weight: bold;
         }
-
         .product-desc {
             color: #a0d0ff;
             margin-bottom: 1.5rem;
             font-size: 1rem;
             line-height: 1.5;
         }
-
         .interested-btn {
             background: linear-gradient(45deg, #0066ff, #00c3ff);
             color: white;
@@ -237,25 +214,21 @@
             box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
             margin: 5px;
         }
-
         .interested-btn:hover:not(:disabled) {
             transform: scale(1.1);
             box-shadow: 0 0 25px rgba(0, 195, 255, 0.6);
         }
-
         .interested-btn:disabled {
             background: linear-gradient(45deg, #666, #999);
             cursor: not-allowed;
             opacity: 0.6;
         }
-
         .cooldown-timer {
             color: #ff6b6b;
             font-size: 0.9rem;
             margin-top: 10px;
             font-weight: bold;
         }
-
         /* Formularz dodawania */
         .add-form {
             max-width: 650px;
@@ -267,14 +240,12 @@
             box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
             backdrop-filter: blur(10px);
         }
-
         .add-form h3 {
             color: #00c3ff;
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
             text-align: center;
         }
-
         .add-form input,
         .add-form textarea {
             width: 100%;
@@ -287,19 +258,16 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-
         .add-form input:focus,
         .add-form textarea:focus {
             border-color: #00c3ff;
             box-shadow: 0 0 15px rgba(0, 195, 255, 0.4);
             outline: none;
         }
-
         .add-form textarea {
             height: 120px;
             resize: vertical;
         }
-
         .add-form button {
             background: linear-gradient(45deg, #0066ff, #00c3ff);
             color: white;
@@ -312,12 +280,10 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
         }
-
         .add-form button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 195, 255, 0.5);
         }
-
         /* Zakupy */
         .purchases {
             max-width: 900px;
@@ -329,14 +295,12 @@
             box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
             backdrop-filter: blur(10px);
         }
-
         .purchases h3 {
             color: #00c3ff;
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
             text-align: center;
         }
-
         .purchases table {
             width: 100%;
             border-collapse: collapse;
@@ -344,35 +308,29 @@
             border-radius: 10px;
             overflow: hidden;
         }
-
         .purchases th,
         .purchases td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #0066ff;
         }
-
         .purchases th {
             background: linear-gradient(45deg, #003366, #001e3c);
             color: #00c3ff;
             font-weight: bold;
         }
-
         .purchases tr:hover {
             background: rgba(0, 100, 200, 0.2);
         }
-
         .purchases tr:last-child td {
             border-bottom: none;
         }
-
         /* Przyciski nawigacji */
         .nav-buttons {
             text-align: center;
             margin: 2rem 0;
             padding: 0 2rem;
         }
-
         .nav-btn {
             background: rgba(0, 100, 200, 0.2);
             color: #00c3ff;
@@ -388,14 +346,12 @@
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
-
         .nav-btn:hover {
             background: linear-gradient(45deg, #0066ff, #00c3ff);
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 5px 20px rgba(0, 195, 255, 0.4);
         }
-
         /* Komunikat */
         .message {
             max-width: 550px;
@@ -408,20 +364,17 @@
             box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
             backdrop-filter: blur(10px);
         }
-
         .message h2 {
             color: #00c3ff;
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
         }
-
         .success {
             color: #00ff88;
             font-size: 2.5rem;
             margin: 1.5rem 0;
             text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
         }
-
         /* Czekaj info */
         .wait-info {
             background: rgba(0, 100, 200, 0.2);
@@ -432,13 +385,11 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 100, 200, 0.2);
         }
-
         .username {
             color: #00c3ff;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
         }
-
         /* Przyciski akcji admina */
         .admin-actions {
             display: flex;
@@ -446,7 +397,6 @@
             justify-content: center;
             margin-top: 15px;
         }
-
         .delete-btn {
             background: linear-gradient(45deg, #ff4757, #ff6b81);
             color: white;
@@ -458,12 +408,10 @@
             font-size: 0.9rem;
             transition: all 0.3s ease;
         }
-
         .delete-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 0 15px rgba(255, 71, 87, 0.6);
         }
-
         .edit-btn {
             background: linear-gradient(45deg, #ffa502, #ffda79);
             color: black;
@@ -475,12 +423,10 @@
             font-size: 0.9rem;
             transition: all 0.3s ease;
         }
-
         .edit-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 0 15px rgba(255, 165, 2, 0.6);
         }
-
         /* Komunikat cooldown */
         .cooldown-message {
             background: rgba(255, 107, 107, 0.2);
@@ -491,13 +437,11 @@
             text-align: center;
             max-width: 500px;
         }
-
         .cooldown-time {
             color: #ff6b6b;
             font-weight: bold;
             font-size: 1.2rem;
         }
-
         /* Responsywność */
         @media (max-width: 768px) {
             .nav-buttons {
@@ -505,34 +449,28 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
             .nav-btn {
                 margin: 5px 0;
                 width: 80%;
             }
-            
             .products {
                 grid-template-columns: 1fr;
                 padding: 1rem;
             }
-            
             .logo {
                 font-size: 2.5rem;
             }
-            
             .admin-actions {
                 flex-direction: column;
                 align-items: center;
             }
         }
-
         /* Animacje */
         @keyframes pulse {
             0% { box-shadow: 0 0 10px rgba(0, 195, 255, 0.3); }
             50% { box-shadow: 0 0 30px rgba(0, 195, 255, 0.6); }
             100% { box-shadow: 0 0 10px rgba(0, 195, 255, 0.3); }
         }
-
         .pulse {
             animation: pulse 2s infinite;
         }
@@ -541,24 +479,20 @@
 <body>
     <!-- Kulki -->
     <div class="bubbles" id="bubbles"></div>
-
     <header>
         <div class="logo">EZCODE</div>
         <div class="subtitle">SKLEP Z UNIKALNYMI PRODUKTAMI</div>
     </header>
-
     <div class="nav-buttons">
         <button class="nav-btn pulse" onclick="showSection('shop')">🏪 Sklep</button>
         <button class="nav-btn pulse" onclick="showSection('admin')">🔧 Admin Panel</button>
     </div>
-
     <!-- Sekcja Sklepu -->
     <div id="shop-section">
         <div class="products" id="products-container">
             <!-- Produkty będą dodawane tutaj przez JavaScript -->
         </div>
     </div>
-
     <!-- Sekcja Admina -->
     <div id="admin-section" style="display: none;">
         <div class="login-panel" id="login-panel">
@@ -566,7 +500,6 @@
             <input type="password" id="admin-password" placeholder="Wprowadź hasło administratora">
             <button onclick="loginAdmin()">🔐 Zaloguj</button>
         </div>
-
         <div id="admin-content" style="display: none;">
             <div class="add-form">
                 <h3>➕ DODAJ NOWY PRZEDMIOT</h3>
@@ -576,14 +509,12 @@
                 <button onclick="addItem()">✅ Dodaj przedmiot</button>
                 <button onclick="logoutAdmin()">🚪 Wyloguj</button>
             </div>
-
             <div class="purchases">
                 <h3>🛍️ PRZEDMIOTY W SKLEPIE</h3>
                 <div class="products" id="admin-products">
                     <!-- Przedmioty admina będą tutaj -->
                 </div>
             </div>
-
             <div class="purchases">
                 <h3>📊 ZAKUPY UŻYTKOWNIKÓW</h3>
                 <table id="purchases-table">
@@ -602,21 +533,17 @@
             </div>
         </div>
     </div>
-
     <!-- Komunikat sukcesu -->
     <div id="success-message" class="message" style="display: none;">
         <h2>🎮 Siemka, aby zakupić dodaj mnie na Discord!</h2>
         <p>Twój nick: <strong id="user-discord" class="username"></strong></p>
         <p>Wybrany przedmiot: <strong id="selected-item" class="username"></strong></p>
-        
         <div class="wait-info">
             <p>⏰ <strong>Czekaj aż osoba o username: <span class="username">ziom5</span> lub o nicku <span class="username">кυѕzєq</span> Cię doda!</strong></p>
         </div>
-        
         <div class="success">✅ OKEJ!</div>
         <button class="nav-btn" onclick="showSection('shop')">🏠 Powrót do sklepu</button>
     </div>
-
     <!-- Komunikat cooldown -->
     <div id="cooldown-message" class="cooldown-message" style="display: none;">
         <h3>⏰ Musisz poczekać!</h3>
@@ -624,7 +551,6 @@
         <div class="cooldown-time" id="cooldown-time"></div>
         <button class="nav-btn" onclick="showSection('shop')" style="margin-top: 20px;">🏠 Powrót do sklepu</button>
     </div>
-
     <script>
         // Dane w localStorage (symulacja bazy danych)
         let items = JSON.parse(localStorage.getItem('ezcode_items')) || [
@@ -633,44 +559,35 @@
         ];
         let purchases = JSON.parse(localStorage.getItem('ezcode_purchases')) || [];
         let isAdmin = false;
-        
-        // System cooldown - 2 godziny w milisekundach
-        const COOLDOWN_TIME = 2 * 60 * 60 * 1000; // 2 godziny
-
+        // System cooldown - 10 minut w milisekundach
+        const COOLDOWN_TIME = 10 * 60 * 1000; // 10 minut
         // Sprawdź czy użytkownik ma cooldown
         function hasCooldown() {
             const lastPurchase = localStorage.getItem('last_purchase_time');
             if (!lastPurchase) return false;
-            
             const lastTime = parseInt(lastPurchase);
             const currentTime = Date.now();
             const timeDiff = currentTime - lastTime;
-            
             return timeDiff < COOLDOWN_TIME;
         }
-
         // Pobierz pozostały czas cooldown
         function getCooldownTimeLeft() {
             const lastPurchase = localStorage.getItem('last_purchase_time');
             if (!lastPurchase) return 0;
-            
             const lastTime = parseInt(lastPurchase);
             const currentTime = Date.now();
             const timePassed = currentTime - lastTime;
             const timeLeft = COOLDOWN_TIME - timePassed;
-            
             return Math.max(0, timeLeft);
         }
-
         // Formatuj czas
         function formatTime(ms) {
-            const hours = Math.floor(ms / (1000 * 60 * 60));
+            // const hours = Math.floor(ms / (1000 * 60 * 60));
             const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-            
-            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            // return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
-
         // Aktualizuj timer cooldown
         function updateCooldownTimer() {
             const timeLeft = getCooldownTimeLeft();
@@ -681,12 +598,10 @@
                 document.getElementById('cooldown-message').style.display = 'none';
             }
         }
-
         // Generowanie kulek
         function createBubbles() {
             const bubblesContainer = document.getElementById('bubbles');
             const bubbleCount = 40;
-            
             for (let i = 0; i < bubbleCount; i++) {
                 const bubble = document.createElement('div');
                 bubble.className = 'bubble';
@@ -698,14 +613,11 @@
                 bubblesContainer.appendChild(bubble);
             }
         }
-
         // Wyświetlanie produktów w sklepie
         function displayProducts() {
             const container = document.getElementById('products-container');
             container.innerHTML = '';
-            
             const hasActiveCooldown = hasCooldown();
-            
             items.forEach((item, index) => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
@@ -719,12 +631,10 @@
                 container.appendChild(productCard);
             });
         }
-
         // Wyświetlanie produktów w panelu admina
         function displayAdminProducts() {
             const container = document.getElementById('admin-products');
             container.innerHTML = '';
-            
             items.forEach((item, index) => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
@@ -740,14 +650,12 @@
                 container.appendChild(productCard);
             });
         }
-
         // Pokaż sekcję
         function showSection(section) {
             document.getElementById('shop-section').style.display = section === 'shop' ? 'block' : 'none';
             document.getElementById('admin-section').style.display = section === 'admin' ? 'block' : 'none';
             document.getElementById('success-message').style.display = 'none';
             document.getElementById('cooldown-message').style.display = 'none';
-            
             if (section === 'shop') {
                 displayProducts();
             } else if (section === 'admin') {
@@ -762,7 +670,6 @@
                 }
             }
         }
-
         // Logowanie admina
         function loginAdmin() {
             const password = document.getElementById('admin-password').value;
@@ -773,20 +680,17 @@
                 alert('❌ Nieprawidłowe hasło!');
             }
         }
-
         // Wylogowanie admina
         function logoutAdmin() {
             isAdmin = false;
             document.getElementById('admin-password').value = '';
             showSection('admin');
         }
-
         // Dodaj przedmiot
         function addItem() {
             const name = document.getElementById('item-name').value;
             const desc = document.getElementById('item-desc').value;
             const image = document.getElementById('item-image').value;
-            
             if (name && desc) {
                 items.push({
                     id: Date.now(),
@@ -805,7 +709,6 @@
                 alert('⚠️ Wypełnij wszystkie pola!');
             }
         }
-
         // Usuń przedmiot
         function deleteItem(index) {
             if (confirm('🗑️ Czy na pewno chcesz usunąć ten przedmiot?')) {
@@ -816,14 +719,12 @@
                 alert('✅ Przedmiot usunięty!');
             }
         }
-
         // Edytuj przedmiot
         function editItem(index) {
             const item = items[index];
             const newName = prompt('✏️ Edytuj nazwę:', item.name);
             const newDesc = prompt('✏️ Edytuj opis:', item.description);
             const newImage = prompt('✏️ Edytuj URL obrazu (opcjonalnie):', item.image || '');
-            
             if (newName !== null && newDesc !== null) {
                 items[index] = {
                     id: item.id,
@@ -837,12 +738,10 @@
                 alert('✅ Przedmiot zaktualizowany!');
             }
         }
-
         // Wyświetl zakupy
         function displayPurchases() {
             const tbody = document.getElementById('purchases-body');
             tbody.innerHTML = '';
-            
             purchases.forEach(purchase => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -854,7 +753,6 @@
                 tbody.appendChild(row);
             });
         }
-
         // Pokaż zainteresowany
         function showInterested(itemIndex) {
             // Sprawdź cooldown
@@ -866,7 +764,6 @@
                 updateCooldownTimer();
                 return;
             }
-            
             const discord = prompt('🎮 Wpisz swój nick z Discorda:');
             if (discord) {
                 const item = items[itemIndex];
@@ -876,25 +773,20 @@
                     item: item.name,
                     date: new Date().toLocaleString('pl-PL')
                 };
-                
                 purchases.push(purchase);
                 localStorage.setItem('ezcode_purchases', JSON.stringify(purchases));
-                
                 // Ustaw czas ostatniego zakupu
                 localStorage.setItem('last_purchase_time', Date.now().toString());
-                
                 document.getElementById('user-discord').textContent = discord;
                 document.getElementById('selected-item').textContent = item.name;
                 document.getElementById('success-message').style.display = 'block';
                 document.getElementById('shop-section').style.display = 'none';
             }
         }
-
         // Inicjalizacja
         window.onload = function() {
             createBubbles();
             displayProducts();
-            
             // Jeśli użytkownik ma cooldown, pokaż komunikat
             if (hasCooldown()) {
                 const timeLeft = getCooldownTimeLeft();
