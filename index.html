@@ -12,11 +12,12 @@
         }
 
         body {
-            background: #000;
+            background: linear-gradient(135deg, #0a0a2a, #000033);
             color: #fff;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
+            background-attachment: fixed;
         }
 
         /* Kulki */
@@ -35,16 +36,18 @@
             bottom: -100px;
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 195, 255, 0.1);
             border-radius: 50%;
-            opacity: 0.5;
+            opacity: 0.7;
             animation: rise 10s infinite ease-in;
+            border: 1px solid rgba(0, 195, 255, 0.3);
         }
 
         .bubble:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 195, 255, 0.8);
             transform: scale(1.2);
             transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 195, 255, 0.6);
         }
 
         .bubble:before {
@@ -52,7 +55,7 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 195, 255, 0.2);
             border-radius: 50%;
             top: 10px;
             left: 10px;
@@ -61,14 +64,20 @@
         @keyframes rise {
             0% {
                 bottom: -100px;
-                transform: translateX(0);
+                transform: translateX(0) translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateX(50px) translateY(-200px) rotate(90deg);
             }
             50% {
-                transform: translateX(100px);
+                transform: translateX(-30px) translateY(-400px) rotate(180deg);
+            }
+            75% {
+                transform: translateX(70px) translateY(-600px) rotate(270deg);
             }
             100% {
                 bottom: 1080px;
-                transform: translateX(-200px);
+                transform: translateX(-100px) translateY(-800px) rotate(360deg);
             }
         }
 
@@ -76,235 +85,425 @@
         header {
             text-align: center;
             padding: 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 2px solid #00ff00;
+            background: rgba(0, 20, 40, 0.9);
+            border-bottom: 3px solid #00c3ff;
+            box-shadow: 0 5px 20px rgba(0, 195, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .logo {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #00ff00, #00ffff);
+            background: linear-gradient(45deg, #00c3ff, #0066ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+        }
+
+        .subtitle {
+            color: #00c3ff;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
         }
 
         /* Panel logowania */
         .login-panel {
-            max-width: 400px;
+            max-width: 450px;
             margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(30, 30, 30, 0.9);
-            border-radius: 10px;
-            border: 1px solid #00ff00;
+            padding: 2.5rem;
+            background: rgba(10, 25, 50, 0.95);
+            border-radius: 15px;
+            border: 2px solid #00c3ff;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .login-panel h3 {
+            color: #00c3ff;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
         }
 
         .login-panel input {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #222;
-            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 15px 0;
+            background: rgba(0, 30, 60, 0.8);
+            border: 2px solid #0066ff;
             color: white;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .login-panel input:focus {
+            border-color: #00c3ff;
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.4);
+            outline: none;
         }
 
         .login-panel button {
-            background: linear-gradient(45deg, #00ff00, #008800);
-            color: black;
+            background: linear-gradient(45deg, #0066ff, #00c3ff);
+            color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 10px;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
+        }
+
+        .login-panel button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 195, 255, 0.5);
         }
 
         /* Produkty */
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             padding: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .product-card {
-            background: rgba(30, 30, 30, 0.9);
+            background: rgba(15, 35, 70, 0.9);
             border-radius: 15px;
-            padding: 1.5rem;
+            padding: 2rem;
             text-align: center;
-            border: 1px solid #00ff00;
-            transition: all 0.3s ease;
+            border: 2px solid #0066ff;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 30, 100, 0.3);
+            backdrop-filter: blur(5px);
+            position: relative;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.3);
-            border-color: #00ffff;
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 195, 255, 0.4);
+            border-color: #00c3ff;
         }
 
         .product-image {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #333, #666);
-            border-radius: 10px;
-            margin-bottom: 1rem;
+            height: 220px;
+            background: linear-gradient(45deg, #001e3c, #003366);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 4rem;
+            border: 2px solid #0066ff;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            border-color: #00c3ff;
+            box-shadow: 0 0 20px rgba(0, 195, 255, 0.3);
         }
 
         .product-name {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #00ff00;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00c3ff;
+            font-weight: bold;
         }
 
         .product-desc {
-            color: #ccc;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            color: #a0d0ff;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
         .interested-btn {
-            background: linear-gradient(45deg, #00ff00, #008800);
-            color: black;
+            background: linear-gradient(45deg, #0066ff, #00c3ff);
+            color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
         }
 
         .interested-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            box-shadow: 0 0 25px rgba(0, 195, 255, 0.6);
         }
 
         /* Formularz dodawania */
         .add-form {
-            max-width: 600px;
+            max-width: 650px;
             margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(30, 30, 30, 0.9);
+            padding: 2.5rem;
+            background: rgba(10, 25, 50, 0.95);
             border-radius: 15px;
-            border: 1px solid #00ff00;
+            border: 2px solid #00c3ff;
+            box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .add-form h3 {
+            color: #00c3ff;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
         }
 
         .add-form input,
         .add-form textarea {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #222;
-            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 15px 0;
+            background: rgba(0, 30, 60, 0.8);
+            border: 2px solid #0066ff;
             color: white;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .add-form input:focus,
+        .add-form textarea:focus {
+            border-color: #00c3ff;
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.4);
+            outline: none;
         }
 
         .add-form textarea {
-            height: 100px;
+            height: 120px;
             resize: vertical;
         }
 
         .add-form button {
-            background: linear-gradient(45deg, #00ff00, #008800);
-            color: black;
+            background: linear-gradient(45deg, #0066ff, #00c3ff);
+            color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 25px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            margin-right: 10px;
+            margin: 10px 10px 0 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
+        }
+
+        .add-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 195, 255, 0.5);
         }
 
         /* Zakupy */
         .purchases {
-            max-width: 800px;
+            max-width: 900px;
             margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(30, 30, 30, 0.9);
+            padding: 2.5rem;
+            background: rgba(10, 25, 50, 0.95);
             border-radius: 15px;
-            border: 1px solid #00ff00;
+            border: 2px solid #00c3ff;
+            box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .purchases h3 {
+            color: #00c3ff;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
         }
 
         .purchases table {
             width: 100%;
             border-collapse: collapse;
+            background: rgba(0, 20, 40, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .purchases th,
         .purchases td {
-            padding: 12px;
+            padding: 15px;
             text-align: left;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid #0066ff;
         }
 
         .purchases th {
-            background: rgba(0, 255, 0, 0.2);
-            color: #00ff00;
+            background: linear-gradient(45deg, #003366, #001e3c);
+            color: #00c3ff;
+            font-weight: bold;
+        }
+
+        .purchases tr:hover {
+            background: rgba(0, 100, 200, 0.2);
+        }
+
+        .purchases tr:last-child td {
+            border-bottom: none;
         }
 
         /* Przyciski nawigacji */
         .nav-buttons {
             text-align: center;
             margin: 2rem 0;
+            padding: 0 2rem;
         }
 
         .nav-btn {
-            background: rgba(0, 255, 0, 0.2);
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            padding: 10px 20px;
-            margin: 0 10px;
+            background: rgba(0, 100, 200, 0.2);
+            color: #00c3ff;
+            border: 2px solid #0066ff;
+            padding: 12px 25px;
+            margin: 0 15px;
             border-radius: 25px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
         }
 
         .nav-btn:hover {
-            background: linear-gradient(45deg, #00ff00, #008800);
-            color: black;
-            transform: scale(1.1);
+            background: linear-gradient(45deg, #0066ff, #00c3ff);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 195, 255, 0.4);
         }
 
         /* Komunikat */
         .message {
-            max-width: 500px;
+            max-width: 550px;
             margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(30, 30, 30, 0.9);
+            padding: 2.5rem;
+            background: rgba(10, 25, 50, 0.95);
             border-radius: 15px;
-            border: 1px solid #00ff00;
+            border: 2px solid #00c3ff;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 195, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .message h2 {
+            color: #00c3ff;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
         }
 
         .success {
-            color: #00ff00;
-            font-size: 2rem;
-            margin: 1rem 0;
+            color: #00ff88;
+            font-size: 2.5rem;
+            margin: 1.5rem 0;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
         }
 
         /* Czekaj info */
         .wait-info {
-            background: rgba(255, 255, 0, 0.1);
-            border: 1px solid #ff0;
-            padding: 1rem;
-            border-radius: 10px;
-            margin: 1rem 0;
+            background: rgba(0, 100, 200, 0.2);
+            border: 2px solid #0066ff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 100, 200, 0.2);
         }
 
         .username {
-            color: #00ff00;
+            color: #00c3ff;
             font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+        }
+
+        /* Przyciski akcji admina */
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .delete-btn {
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 71, 87, 0.6);
+        }
+
+        .edit-btn {
+            background: linear-gradient(45deg, #ffa502, #ffda79);
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 165, 2, 0.6);
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                margin: 5px 0;
+                width: 80%;
+            }
+            
+            .products {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .admin-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animacje */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px rgba(0, 195, 255, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(0, 195, 255, 0.6); }
+            100% { box-shadow: 0 0 10px rgba(0, 195, 255, 0.3); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
@@ -314,12 +513,12 @@
 
     <header>
         <div class="logo">EZCODE</div>
-        <h2>SKLEP Z UNIKALNYMI PRODUKTAMI</h2>
+        <div class="subtitle">SKLEP Z UNIKALNYMI PRODUKTAMI</div>
     </header>
 
     <div class="nav-buttons">
-        <button class="nav-btn" onclick="showSection('shop')">Sklep</button>
-        <button class="nav-btn" onclick="showSection('admin')">Admin Panel</button>
+        <button class="nav-btn pulse" onclick="showSection('shop')">🏪 Sklep</button>
+        <button class="nav-btn pulse" onclick="showSection('admin')">🔧 Admin Panel</button>
     </div>
 
     <!-- Sekcja Sklepu -->
@@ -332,23 +531,30 @@
     <!-- Sekcja Admina -->
     <div id="admin-section" style="display: none;">
         <div class="login-panel" id="login-panel">
-            <h3>PANEL ADMINISTRATORA</h3>
-            <input type="password" id="admin-password" placeholder="Wprowadź hasło">
-            <button onclick="loginAdmin()">Zaloguj</button>
+            <h3>🔒 PANEL ADMINISTRATORA</h3>
+            <input type="password" id="admin-password" placeholder="Wprowadź hasło administratora">
+            <button onclick="loginAdmin()">🔐 Zaloguj</button>
         </div>
 
         <div id="admin-content" style="display: none;">
             <div class="add-form">
-                <h3>DODAJ NOWY PRZEDMIOT</h3>
+                <h3>➕ DODAJ NOWY PRZEDMIOT</h3>
                 <input type="text" id="item-name" placeholder="Nazwa przedmiotu">
                 <textarea id="item-desc" placeholder="Opis przedmiotu"></textarea>
                 <input type="text" id="item-image" placeholder="URL obrazu (opcjonalnie)">
-                <button onclick="addItem()">Dodaj przedmiot</button>
-                <button onclick="logoutAdmin()">Wyloguj</button>
+                <button onclick="addItem()">✅ Dodaj przedmiot</button>
+                <button onclick="logoutAdmin()">🚪 Wyloguj</button>
             </div>
 
             <div class="purchases">
-                <h3>ZAKUPY UŻYTKOWNIKÓW</h3>
+                <h3>🛍️ PRZEDMIOTY W SKLEPIE</h3>
+                <div class="products" id="admin-products">
+                    <!-- Przedmioty admina będą tutaj -->
+                </div>
+            </div>
+
+            <div class="purchases">
+                <h3>📊 ZAKUPY UŻYTKOWNIKÓW</h3>
                 <table id="purchases-table">
                     <thead>
                         <tr>
@@ -368,42 +574,45 @@
 
     <!-- Komunikat sukcesu -->
     <div id="success-message" class="message" style="display: none;">
-        <h2>Siemka, aby zakupić dodaj mnie na Discord!</h2>
-        <p>Twój nick: <strong id="user-discord"></strong></p>
-        <p>Wybrany przedmiot: <strong id="selected-item"></strong></p>
+        <h2>🎮 Siemka, aby zakupić dodaj mnie na Discord!</h2>
+        <p>Twój nick: <strong id="user-discord" class="username"></strong></p>
+        <p>Wybrany przedmiot: <strong id="selected-item" class="username"></strong></p>
         
         <div class="wait-info">
-            <p>Czekaj aż osoba o username: <span class="username">ziom5</span> lub o nicku <span class="username">кυѕzєq</span> Cię doda!</p>
+            <p>⏰ <strong>Czekaj aż osoba o username: <span class="username">ziom5</span> lub o nicku <span class="username">кυѕzєq</span> Cię doda!</strong></p>
         </div>
         
         <div class="success">✅ OKEJ!</div>
-        <button class="nav-btn" onclick="showSection('shop')">Powrót do sklepu</button>
+        <button class="nav-btn" onclick="showSection('shop')">🏠 Powrót do sklepu</button>
     </div>
 
     <script>
         // Dane w localStorage (symulacja bazy danych)
-        let items = JSON.parse(localStorage.getItem('ezcode_items')) || [];
+        let items = JSON.parse(localStorage.getItem('ezcode_items')) || [
+            {id: 1, name: "Premium Plugin", description: "Najlepszy plugin na rynku", image: ""},
+            {id: 2, name: "VIP Account", description: "Specjalne uprawnienia VIP", image: ""}
+        ];
         let purchases = JSON.parse(localStorage.getItem('ezcode_purchases')) || [];
         let isAdmin = false;
 
         // Generowanie kulek
         function createBubbles() {
             const bubblesContainer = document.getElementById('bubbles');
-            const bubbleCount = 30;
+            const bubbleCount = 40;
             
             for (let i = 0; i < bubbleCount; i++) {
                 const bubble = document.createElement('div');
                 bubble.className = 'bubble';
                 bubble.style.left = Math.random() * 100 + '%';
-                bubble.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                bubble.style.animationDuration = (Math.random() * 15 + 8) + 's';
                 bubble.style.animationDelay = Math.random() * 5 + 's';
-                bubble.style.width = (Math.random() * 40 + 20) + 'px';
+                bubble.style.width = (Math.random() * 50 + 20) + 'px';
                 bubble.style.height = bubble.style.width;
                 bubblesContainer.appendChild(bubble);
             }
         }
 
-        // Wyświetlanie produktów
+        // Wyświetlanie produktów w sklepie
         function displayProducts() {
             const container = document.getElementById('products-container');
             container.innerHTML = '';
@@ -412,10 +621,31 @@
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
-                    <div class="product-image">${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">` : '📦'}</div>
+                    <div class="product-image">${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">` : '📦'}</div>
                     <div class="product-name">${item.name}</div>
                     <div class="product-desc">${item.description}</div>
-                    <button class="interested-btn" onclick="showInterested(${index})">ZAINTERESOWANY</button>
+                    <button class="interested-btn pulse" onclick="showInterested(${index})">🎯 ZAINTERESOWANY</button>
+                `;
+                container.appendChild(productCard);
+            });
+        }
+
+        // Wyświetlanie produktów w panelu admina
+        function displayAdminProducts() {
+            const container = document.getElementById('admin-products');
+            container.innerHTML = '';
+            
+            items.forEach((item, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">` : '📦'}</div>
+                    <div class="product-name">${item.name}</div>
+                    <div class="product-desc">${item.description}</div>
+                    <div class="admin-actions">
+                        <button class="edit-btn" onclick="editItem(${index})">✏️ Edytuj</button>
+                        <button class="delete-btn" onclick="deleteItem(${index})">🗑️ Usuń</button>
+                    </div>
                 `;
                 container.appendChild(productCard);
             });
@@ -433,6 +663,7 @@
                 if (isAdmin) {
                     document.getElementById('login-panel').style.display = 'none';
                     document.getElementById('admin-content').style.display = 'block';
+                    displayAdminProducts();
                     displayPurchases();
                 } else {
                     document.getElementById('login-panel').style.display = 'block';
@@ -448,7 +679,7 @@
                 isAdmin = true;
                 showSection('admin');
             } else {
-                alert('Nieprawidłowe hasło!');
+                alert('❌ Nieprawidłowe hasło!');
             }
         }
 
@@ -476,10 +707,43 @@
                 document.getElementById('item-name').value = '';
                 document.getElementById('item-desc').value = '';
                 document.getElementById('item-image').value = '';
+                displayAdminProducts();
                 displayProducts();
-                alert('Przedmiot dodany!');
+                alert('✅ Przedmiot dodany!');
             } else {
-                alert('Wypełnij wszystkie pola!');
+                alert('⚠️ Wypełnij wszystkie pola!');
+            }
+        }
+
+        // Usuń przedmiot
+        function deleteItem(index) {
+            if (confirm('🗑️ Czy na pewno chcesz usunąć ten przedmiot?')) {
+                items.splice(index, 1);
+                localStorage.setItem('ezcode_items', JSON.stringify(items));
+                displayAdminProducts();
+                displayProducts();
+                alert('✅ Przedmiot usunięty!');
+            }
+        }
+
+        // Edytuj przedmiot
+        function editItem(index) {
+            const item = items[index];
+            const newName = prompt('✏️ Edytuj nazwę:', item.name);
+            const newDesc = prompt('✏️ Edytuj opis:', item.description);
+            const newImage = prompt('✏️ Edytuj URL obrazu (opcjonalnie):', item.image || '');
+            
+            if (newName !== null && newDesc !== null) {
+                items[index] = {
+                    id: item.id,
+                    name: newName || item.name,
+                    description: newDesc || item.description,
+                    image: newImage !== null ? newImage : item.image
+                };
+                localStorage.setItem('ezcode_items', JSON.stringify(items));
+                displayAdminProducts();
+                displayProducts();
+                alert('✅ Przedmiot zaktualizowany!');
             }
         }
 
@@ -492,7 +756,7 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${purchase.id}</td>
-                    <td>${purchase.discord}</td>
+                    <td><span class="username">${purchase.discord}</span></td>
                     <td>${purchase.item}</td>
                     <td>${purchase.date}</td>
                 `;
@@ -502,7 +766,7 @@
 
         // Pokaż zainteresowany
         function showInterested(itemIndex) {
-            const discord = prompt('Wpisz swój nick z Discorda:');
+            const discord = prompt('🎮 Wpisz swój nick z Discorda:');
             if (discord) {
                 const item = items[itemIndex];
                 const purchase = {
