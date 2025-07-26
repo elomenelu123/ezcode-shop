@@ -235,11 +235,25 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 195, 255, 0.3);
+            margin: 5px;
         }
 
-        .interested-btn:hover {
+        .interested-btn:hover:not(:disabled) {
             transform: scale(1.1);
             box-shadow: 0 0 25px rgba(0, 195, 255, 0.6);
+        }
+
+        .interested-btn:disabled {
+            background: linear-gradient(45deg, #666, #999);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .cooldown-timer {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-weight: bold;
         }
 
         /* Formularz dodawania */
@@ -467,6 +481,23 @@
             box-shadow: 0 0 15px rgba(255, 165, 2, 0.6);
         }
 
+        /* Komunikat cooldown */
+        .cooldown-message {
+            background: rgba(255, 107, 107, 0.2);
+            border: 2px solid #ff6b6b;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem auto;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .cooldown-time {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
         /* Responsywność */
         @media (max-width: 768px) {
             .nav-buttons {
@@ -586,6 +617,14 @@
         <button class="nav-btn" onclick="showSection('shop')">🏠 Powrót do sklepu</button>
     </div>
 
+    <!-- Komunikat cooldown -->
+    <div id="cooldown-message" class="cooldown-message" style="display: none;">
+        <h3>⏰ Musisz poczekać!</h3>
+        <p>Możesz złożyć kolejne zamówienie za:</p>
+        <div class="cooldown-time" id="cooldown-time"></div>
+        <button class="nav-btn" onclick="showSection('shop')" style="margin-top: 20px;">🏠 Powrót do sklepu</button>
+    </div>
+
     <script>
         // Dane w localStorage (symulacja bazy danych)
         let items = JSON.parse(localStorage.getItem('ezcode_items')) || [
@@ -594,6 +633,54 @@
         ];
         let purchases = JSON.parse(localStorage.getItem('ezcode_purchases')) || [];
         let isAdmin = false;
+        
+        // System cooldown - 2 godziny w milisekundach
+        const COOLDOWN_TIME = 2 * 60 * 60 * 1000; // 2 godziny
+
+        // Sprawdź czy użytkownik ma cooldown
+        function hasCooldown() {
+            const lastPurchase = localStorage.getItem('last_purchase_time');
+            if (!lastPurchase) return false;
+            
+            const lastTime = parseInt(lastPurchase);
+            const currentTime = Date.now();
+            const timeDiff = currentTime - lastTime;
+            
+            return timeDiff < COOLDOWN_TIME;
+        }
+
+        // Pobierz pozostały czas cooldown
+        function getCooldownTimeLeft() {
+            const lastPurchase = localStorage.getItem('last_purchase_time');
+            if (!lastPurchase) return 0;
+            
+            const lastTime = parseInt(lastPurchase);
+            const currentTime = Date.now();
+            const timePassed = currentTime - lastTime;
+            const timeLeft = COOLDOWN_TIME - timePassed;
+            
+            return Math.max(0, timeLeft);
+        }
+
+        // Formatuj czas
+        function formatTime(ms) {
+            const hours = Math.floor(ms / (1000 * 60 * 60));
+            const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+            
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Aktualizuj timer cooldown
+        function updateCooldownTimer() {
+            const timeLeft = getCooldownTimeLeft();
+            if (timeLeft > 0) {
+                document.getElementById('cooldown-time').textContent = formatTime(timeLeft);
+                setTimeout(updateCooldownTimer, 1000);
+            } else {
+                document.getElementById('cooldown-message').style.display = 'none';
+            }
+        }
 
         // Generowanie kulek
         function createBubbles() {
@@ -617,6 +704,8 @@
             const container = document.getElementById('products-container');
             container.innerHTML = '';
             
+            const hasActiveCooldown = hasCooldown();
+            
             items.forEach((item, index) => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
@@ -624,7 +713,8 @@
                     <div class="product-image">${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">` : '📦'}</div>
                     <div class="product-name">${item.name}</div>
                     <div class="product-desc">${item.description}</div>
-                    <button class="interested-btn pulse" onclick="showInterested(${index})">🎯 ZAINTERESOWANY</button>
+                    <button class="interested-btn pulse" onclick="showInterested(${index})" ${hasActiveCooldown ? 'disabled' : ''}>🎯 ZAINTERESOWANY</button>
+                    ${hasActiveCooldown ? `<div class="cooldown-timer">⏱️ Musisz poczekać</div>` : ''}
                 `;
                 container.appendChild(productCard);
             });
@@ -656,6 +746,7 @@
             document.getElementById('shop-section').style.display = section === 'shop' ? 'block' : 'none';
             document.getElementById('admin-section').style.display = section === 'admin' ? 'block' : 'none';
             document.getElementById('success-message').style.display = 'none';
+            document.getElementById('cooldown-message').style.display = 'none';
             
             if (section === 'shop') {
                 displayProducts();
@@ -766,6 +857,16 @@
 
         // Pokaż zainteresowany
         function showInterested(itemIndex) {
+            // Sprawdź cooldown
+            if (hasCooldown()) {
+                const timeLeft = getCooldownTimeLeft();
+                document.getElementById('cooldown-time').textContent = formatTime(timeLeft);
+                document.getElementById('cooldown-message').style.display = 'block';
+                showSection('shop');
+                updateCooldownTimer();
+                return;
+            }
+            
             const discord = prompt('🎮 Wpisz swój nick z Discorda:');
             if (discord) {
                 const item = items[itemIndex];
@@ -779,6 +880,9 @@
                 purchases.push(purchase);
                 localStorage.setItem('ezcode_purchases', JSON.stringify(purchases));
                 
+                // Ustaw czas ostatniego zakupu
+                localStorage.setItem('last_purchase_time', Date.now().toString());
+                
                 document.getElementById('user-discord').textContent = discord;
                 document.getElementById('selected-item').textContent = item.name;
                 document.getElementById('success-message').style.display = 'block';
@@ -790,6 +894,13 @@
         window.onload = function() {
             createBubbles();
             displayProducts();
+            
+            // Jeśli użytkownik ma cooldown, pokaż komunikat
+            if (hasCooldown()) {
+                const timeLeft = getCooldownTimeLeft();
+                document.getElementById('cooldown-time').textContent = formatTime(timeLeft);
+                updateCooldownTimer();
+            }
         };
     </script>
 </body>
