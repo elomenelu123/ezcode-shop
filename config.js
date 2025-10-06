@@ -1,10 +1,10 @@
 // 🔥 FIREBASE CONFIGURATION
 export const firebaseConfig = {
-    apiKey: "TWOJ_API_KEY",
-    authDomain: "twoj-projekt.firebaseapp.com",
-    projectId: "twoj-projekt",
-    storageBucket: "twoj-projekt.appspot.com",
-    messagingSenderId: "123456789",
+    apiKey: "AIzaSyC_SG8aqW3zG0IOsaw1KbQPg17yCt9IdYE",
+    authDomain: "aiman-12345.firebaseapp.com",
+    projectId: "aiman-12345",
+    storageBucket: "aiman-12345.appspot.com",
+    messagingSenderId: "123456789012",
     appId: "1:123456789:web:abcdef123456"
 };
 
@@ -16,7 +16,7 @@ export const aiConfig = {
 // ✉️ EMAILJS CONFIGURATION
 // Pobierz z: https://dashboard.emailjs.com/
 export const emailConfig = {
-    publicKey: "TWOJ_PUBLIC_KEY",        // Dashboard -> Account -> General
-    serviceId: "TWOJ_SERVICE_ID",        // Email Services -> dodaj Gmail
-    templateId: "TWOJ_TEMPLATE_ID"       // Email Templates -> Create New Template
+    publicKey: "l_BKW6dXtffUki-rw",        // Dashboard -> Account -> General
+    serviceId: "service_9xwya6l",        // Email Services -> dodaj Gmail
+    templateId: "template_upt8bax"       // Email Templates -> Create New Template
 };
