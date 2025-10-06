@@ -3,154 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaloguj się do AiMan</title>
+    <title>AiMan - Zaloguj się</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="auth-body">
+<body>
     
-    <div class="auth-container">
-        <!-- Left side - Branding -->
-        <div class="auth-left">
-            <div class="brand-section">
+    <!-- Background -->
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Logo & Brand -->
+        <div class="brand">
+            <div class="logo-wrapper">
                 <div class="logo">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                        <rect width="48" height="48" rx="12" fill="url(#gradient)"/>
-                        <path d="M24 12L32 20L24 28L16 20L24 12Z" fill="white" opacity="0.9"/>
-                        <path d="M24 20L32 28L24 36L16 28L24 20Z" fill="white" opacity="0.6"/>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="gradient" x1="0" y1="0" x2="48" y2="48">
-                                <stop offset="0%" stop-color="#6366f1"/>
-                                <stop offset="100%" stop-color="#8b5cf6"/>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
                             </linearGradient>
                         </defs>
+                        <circle cx="50" cy="50" r="45" fill="url(#logoGrad)" opacity="0.1"/>
+                        <path d="M50 20 L70 40 L50 60 L30 40 Z" fill="url(#logoGrad)"/>
+                        <path d="M50 40 L70 60 L50 80 L30 60 Z" fill="url(#logoGrad)" opacity="0.6"/>
                     </svg>
                 </div>
-                <h1>AiMan</h1>
-                <p class="brand-desc">Twój inteligentny asystent</p>
             </div>
+            <h1 class="brand-name">AiMan</h1>
+            <p class="brand-tagline">Inteligencja bez granic</p>
         </div>
 
-        <!-- Right side - Auth Form -->
-        <div class="auth-right">
-            <div class="auth-box">
-                <div class="auth-header">
-                    <h2 id="formTitle">Zaloguj się</h2>
-                    <p id="formSubtitle">aby kontynuować do AiMan</p>
+        <!-- Auth Box -->
+        <div class="auth-box">
+            
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" data-tab="login">Logowanie</button>
+                <button class="tab" data-tab="register">Rejestracja</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="form active" id="loginForm" data-form="login">
+                
+                <div class="input-wrapper">
+                    <div class="input-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <input type="email" id="loginEmail" placeholder="Twój email" required>
                 </div>
 
-                <!-- Google Sign In Button -->
-                <button class="google-auth-btn" id="googleSignIn">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    <span>Kontynuuj z Google</span>
-                </button>
-
-                <div class="separator">
-                    <span>lub</span>
-                </div>
-
-                <!-- Email/Password Form -->
-                <form id="authForm" class="auth-form">
-                    <div class="input-group">
-                        <label for="email">Email</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            placeholder="twoj@email.com"
-                            autocomplete="email"
-                            required
-                        >
+                <div class="input-wrapper">
+                    <div class="input-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
                     </div>
-
-                    <div class="input-group" id="nameGroup" style="display: none;">
-                        <label for="name">Imię</label>
-                        <input 
-                            type="text" 
-                            id="name" 
-                            placeholder="Jak masz na imię?"
-                            autocomplete="name"
-                        >
-                    </div>
-
-                    <div class="input-group">
-                        <label for="password">Hasło</label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            placeholder="Wprowadź hasło"
-                            autocomplete="current-password"
-                            required
-                        >
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <span>Dalej</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                    <input type="password" id="loginPassword" placeholder="Hasło" required>
+                    <button type="button" class="password-toggle">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
                         </svg>
                     </button>
-                </form>
-
-                <div class="auth-footer">
-                    <p id="switchText">Nie masz konta?</p>
-                    <button class="link-btn" id="switchMode">Zarejestruj się</button>
                 </div>
+
+                <button type="submit" class="btn-primary">
+                    Zaloguj się
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14m-7-7l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form class="form" id="registerForm" data-form="register">
+                
+                <div class="input-wrapper">
+                    <div class="input-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <input type="text" id="registerName" placeholder="Twoje imię" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <div class="input-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <input type="email" id="registerEmail" placeholder="Twój email" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <div class="input-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <input type="password" id="registerPassword" placeholder="Hasło (min. 6 znaków)" required>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Utwórz konto
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14m-7-7l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>lub kontynuuj z</span>
             </div>
+
+            <!-- Google Button -->
+            <button class="btn-google" id="googleBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Google
+            </button>
+
         </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 AiMan. Wszystkie prawa zastrzeżone.</p>
+        </div>
+
     </div>
 
-    <!-- ==================== MODAL WERYFIKACJI EMAIL ==================== -->
-    <div class="modal-overlay" id="verificationModal">
+    <!-- Verification Modal -->
+    <div class="modal" id="verificationModal">
+        <div class="modal-backdrop"></div>
         <div class="modal-content">
+            
+            <button class="modal-close" id="closeModal">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+
             <div class="modal-header">
                 <div class="modal-icon">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/>
+                    <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
                 </div>
-                <h2>Sprawdź swoją skrzynkę</h2>
-                <p>Wysłaliśmy kod weryfikacyjny na adres:</p>
-                <p class="email-display" id="emailDisplay"></p>
+                <h2>Sprawdź swoją pocztę</h2>
+                <p>Wysłaliśmy kod na adres:</p>
+                <p class="email-highlight" id="emailDisplay"></p>
             </div>
 
             <div class="modal-body">
-                <div class="code-input-group">
+                <div class="code-inputs">
                     <input type="text" maxlength="1" class="code-input" data-index="0">
                     <input type="text" maxlength="1" class="code-input" data-index="1">
                     <input type="text" maxlength="1" class="code-input" data-index="2">
                     <input type="text" maxlength="1" class="code-input" data-index="3">
                 </div>
 
-                <div class="verification-timer">
-                    Kod ważny przez: <span id="timerDisplay">10:00</span>
+                <div class="timer">
+                    Kod ważny: <span id="timer">10:00</span>
                 </div>
 
-                <button class="verify-btn" id="verifyCodeBtn">
-                    <span>Zweryfikuj</span>
+                <button class="btn-primary" id="verifyBtn">
+                    Zweryfikuj
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                 </button>
 
-                <div class="resend-section">
-                    <p>Nie dostałeś kodu?</p>
-                    <button class="link-btn" id="resendCodeBtn">Wyślij ponownie</button>
-                </div>
+                <button class="btn-text" id="resendBtn">Wyślij kod ponownie</button>
             </div>
 
-            <button class="modal-close" id="closeModal">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 6L6 18M6 6l12 12"/>
-                </svg>
-            </button>
         </div>
     </div>
 
-    <!-- EmailJS SDK -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
-    <!-- Firebase & App Script -->
     <script type="module" src="app.js"></script>
 </body>
 </html>
