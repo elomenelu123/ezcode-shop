@@ -103,6 +103,53 @@
         </div>
     </div>
 
+    <!-- ==================== MODAL WERYFIKACJI EMAIL ==================== -->
+    <div class="modal-overlay" id="verificationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h2>Sprawdź swoją skrzynkę</h2>
+                <p>Wysłaliśmy kod weryfikacyjny na adres:</p>
+                <p class="email-display" id="emailDisplay"></p>
+            </div>
+
+            <div class="modal-body">
+                <div class="code-input-group">
+                    <input type="text" maxlength="1" class="code-input" data-index="0">
+                    <input type="text" maxlength="1" class="code-input" data-index="1">
+                    <input type="text" maxlength="1" class="code-input" data-index="2">
+                    <input type="text" maxlength="1" class="code-input" data-index="3">
+                </div>
+
+                <div class="verification-timer">
+                    Kod ważny przez: <span id="timerDisplay">10:00</span>
+                </div>
+
+                <button class="verify-btn" id="verifyCodeBtn">
+                    <span>Zweryfikuj</span>
+                </button>
+
+                <div class="resend-section">
+                    <p>Nie dostałeś kodu?</p>
+                    <button class="link-btn" id="resendCodeBtn">Wyślij ponownie</button>
+                </div>
+            </div>
+
+            <button class="modal-close" id="closeModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
     <!-- Firebase & App Script -->
     <script type="module" src="app.js"></script>
 </body>
